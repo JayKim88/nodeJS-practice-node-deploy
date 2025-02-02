@@ -12,10 +12,17 @@ const redis = require("redis");
 const RedisStore = require("connect-redis").default;
 
 dotenv.config();
+// const redisClient = redis.createClient({
+//   url: `redis://${process.env.REDIS_HOST}:${process.env.REDIS_PORT}`,
+//   password: process.env.REDIS_PASSWORD,
+// });
 const redisClient = redis.createClient({
-  url: `redis://${process.env.REDIS_HOST}:${process.env.REDIS_PORT}`,
-  password: process.env.REDIS_PASSWORD,
+  socket: {
+    host: "127.0.0.1",
+    port: 6379,
+  },
 });
+
 redisClient.connect().catch(console.error);
 const pageRouter = require("./routes/page");
 const authRouter = require("./routes/auth");
