@@ -38,3 +38,5 @@ cors-config.json
 
 uploads
 coverage
+
+.env
